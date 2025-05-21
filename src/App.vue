@@ -16,7 +16,7 @@
     <ViewPerson></ViewPerson>
     <EditPerson></EditPerson>
     <DeletePerson></DeletePerson>
-    <BmiText></BmiText>
+    <BmiText :person-list="personList"></BmiText>
 </template>
 
 <script>
