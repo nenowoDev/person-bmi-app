@@ -2,11 +2,15 @@
     <div>
         <h3>Person List</h3>
         <ul>
-            <li v-for="(person, index) in personList" :key="index">
-                <img v-if="person.photoUrl" :src="person.photoUrl" alt="person photo" width="50"
-                    style="vertical-align: middle; margin-right: 10px;" />
-                <strong>{{ person.name }}</strong> - Age: {{ person.age }}, BMI: {{ person.bmi }}, Category: {{
-                    person.category }}
+            <li v-for="(p, i) in personList" :key="i">
+                <div class="person-card">
+                    <img v-if="p.photoUrl" :src="p.photoUrl" alt="photo" class="person-photo" />
+                    <div>
+                        <strong>[{{ i }}] {{ p.name }}</strong> (Age: {{ p.age }})<br>
+                        Weight: {{ p.weight }} kg, Height: {{ p.height }} cm<br>
+                        BMI: {{ p.bmi }}
+                    </div>
+                </div>
             </li>
         </ul>
     </div>
