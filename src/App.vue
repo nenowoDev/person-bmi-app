@@ -11,7 +11,7 @@
         </nav>
 
     </div>
-    <RouterView @person-added="handleAddPerson" :personList ='personList'  @update-person="handleUpdatePerson" ></RouterView>
+    <RouterView @person-added="handleAddPerson" :personList ='personList'  @update-person="handleUpdatePerson" @delete-person="handleDeletePerson"></RouterView>
     <!-- <RouterView></RouterView> -->
     <!-- <AddPerson @person-added="handleAddPerson"></AddPerson>
     <ListPersons :personList ='personList'></ListPersons> 
@@ -70,11 +70,15 @@ export default {
         handleAddPerson(entry)
         {
             this.personList.push(entry)
-        }
+        },
+         handleUpdatePerson(index, updatedPerson) {
+         this.personList.splice(index, 1, updatedPerson); // ✅ update from child
+  },
+         handleDeletePerson(index){
+            this.personList.splice(index,1)
+         }
     },
-  handleUpdatePerson(index, updatedPerson) {
-    this.personList.splice(index, 1, updatedPerson); // ✅ update from child
-  }
+ 
 }
 
 
