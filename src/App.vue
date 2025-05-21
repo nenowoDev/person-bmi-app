@@ -3,39 +3,42 @@
         <h1>Person BMI Web App</h1>
 
         <nav class="main-nav">
-            <a href="#">Add Person</a> |
-            <a href="#">View All</a> |
-            <a href="#">View One</a> |
-            <a href="#">Edit</a> |
-            <a href="#">Delete</a>
+            <RouterLink to="addperson">Add Person</RouterLink> |
+            <RouterLink to="listperson">View All</RouterLink> |
+            <RouterLink to="viewperson">View One</RouterLink> |
+            <RouterLink to="editperson">Edit</RouterLink> |
+            <RouterLink to="deleteperson">Delete</RouterLink>
         </nav>
 
     </div>
-    <AddPerson @person-added="handleAddPerson"></AddPerson>
+    <RouterView @person-added="handleAddPerson" :personList ='personList' ></RouterView>
+    <!-- <RouterView></RouterView> -->
+    <!-- <AddPerson @person-added="handleAddPerson"></AddPerson>
     <ListPersons :personList ='personList'></ListPersons>
     <ViewPerson :personList ='personList'></ViewPerson>
 <EditPerson :personList="personList" @update-person="handleUpdatePerson" />
     <DeletePerson></DeletePerson>
-    <BmiText :person-list="personList"></BmiText>
+    <BmiText :person-list="personList"></BmiText> -->
+    
 </template>
 
 <script>
-import AddPerson from './components/AddPerson.vue';
-import BmiText from './components/BmiText.vue';
-import DeletePerson from './components/DeletePerson.vue';
-import EditPerson from './components/EditPerson.vue';
-import ListPersons from './components/ListPersons.vue';
-import ViewPerson from './components/ViewPerson.vue';
+// import AddPerson from './components/AddPerson.vue';
+// import BmiText from './components/BmiText.vue';
+// import DeletePerson from './components/DeletePerson.vue';
+// import EditPerson from './components/EditPerson.vue';
+// import ListPersons from './components/ListPersons.vue';
+// import ViewPerson from './components/ViewPerson.vue';
 
 export default {
     name: 'App',
     components: {
-        AddPerson,
-        BmiText,
-        DeletePerson,
-        EditPerson,
-        ListPersons,
-        ViewPerson
+        // AddPerson,
+        // BmiText,
+        // DeletePerson,
+        // EditPerson,
+        // ListPersons,
+        // ViewPerson
     },
     data() {
         return {

@@ -9,6 +9,7 @@ import BmiText from "@/components/BmiText.vue";
 const router=createRouter({
     history: createWebHistory(),
     routes:[
+        {path:'/listperson',component:ListPersons},
         {path:'/addperson',component:AddPerson},
         {path:'/editperson',component:EditPerson},
         {path:'/deleteperson',component:DeletePerson},
