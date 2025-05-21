@@ -13,7 +13,7 @@
     </div>
     <AddPerson @person-added="handleAddPerson"></AddPerson>
     <ListPersons :personList ='personList'></ListPersons>
-    <ViewPerson></ViewPerson>
+    <ViewPerson :personList ='personList'></ViewPerson>
     <EditPerson></EditPerson>
     <DeletePerson></DeletePerson>
     <BmiText :person-list="personList"></BmiText>

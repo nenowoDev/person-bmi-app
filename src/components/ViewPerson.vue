@@ -2,14 +2,15 @@
     <h3>View One Person</h3>
     <input type="number" id="indexInput" v-model.number="indexInput" placeholder="Enter index" />
     <div id="onePersonView" class="detail-box">
-        <template v-if="selectedPerson">
-            <p>Name : {{ selectedPerson.name }}</p>
-            <p>Name : {{ selectedPerson.yob }}</p>
-            <p>Name : {{ selectedPerson.age }}</p>
-            <p>Name : {{ selectedPerson.weight }}</p>
-            <p>Name : {{ selectedPerson.height }}</p>
-            <p>Name : {{ selectedPerson.bmi }}</p>
-        </template>
+           <template v-if="selectedPerson">
+                <p>Name: {{ selectedPerson.name }}</p>
+                <p>Year of Birth: {{ selectedPerson.yob }}</p>
+                <p>Age: {{ selectedPerson.age }}</p>
+                <p>Weight: {{ selectedPerson.weight }} kg</p>
+                <p>Height: {{ selectedPerson.height }} cm</p>
+                <p>BMI: {{ selectedPerson.bmi }}</p>
+                <img v-if="selectedPerson.photoUrl" :src="selectedPerson.photoUrl" alt="Person photo" class="person-photo">
+            </template>
         <em v-else>No person at that index</em>
     </div>
 
@@ -27,6 +28,12 @@
         return{
             indexInput:'',
             selectedPerson:''
+        }
+    },
+    watch: {
+        indexInput: {
+            handler: 'displayByIndex',
+            immediate: true
         }
     },
     methods:{
