@@ -2,7 +2,15 @@
     <h3>View One Person</h3>
     <input type="number" id="indexInput" v-model.number="indexInput" placeholder="Enter index" />
     <div id="onePersonView" class="detail-box">
-        <em>No person at that index</em>
+        <template v-if="selectedPerson">
+            <p>Name : {{ selectedPerson.name }}</p>
+            <p>Name : {{ selectedPerson.yob }}</p>
+            <p>Name : {{ selectedPerson.age }}</p>
+            <p>Name : {{ selectedPerson.weight }}</p>
+            <p>Name : {{ selectedPerson.height }}</p>
+            <p>Name : {{ selectedPerson.bmi }}</p>
+        </template>
+        <em v-else>No person at that index</em>
     </div>
 
 </template>
@@ -17,15 +25,19 @@
     },
     data(){
         return{
-            indexInput:''
+            indexInput:'',
+            selectedPerson:''
         }
     },
     methods:{
         displayByindex(){
-          this.personList.forEach((item)=>{
-            if(item == this.indexInput)
+          if(this.indexInput>0 && this.indexInput<this.personList.length)
+          {
+            this.selectedPerson = this.personList[this.indexInput]
+          }else{
+            this.selectedPerson=null;
           }
-        )
+        
 
         }
     }
