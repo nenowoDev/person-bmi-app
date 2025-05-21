@@ -11,10 +11,10 @@
         </nav>
 
     </div>
-    <RouterView @person-added="handleAddPerson" :personList ='personList' ></RouterView>
+    <RouterView @person-added="handleAddPerson" :personList ='personList'  @update-person="handleUpdatePerson" ></RouterView>
     <!-- <RouterView></RouterView> -->
     <!-- <AddPerson @person-added="handleAddPerson"></AddPerson>
-    <ListPersons :personList ='personList'></ListPersons>
+    <ListPersons :personList ='personList'></ListPersons> 
     <ViewPerson :personList ='personList'></ViewPerson>
 <EditPerson :personList="personList" @update-person="handleUpdatePerson" />
     <DeletePerson></DeletePerson>
