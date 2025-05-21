@@ -11,7 +11,7 @@
         </nav>
 
     </div>
-    <AddPerson></AddPerson>
+    <AddPerson @add-person="handleAddPerson"></AddPerson>
     <ListPersons></ListPersons>
     <ViewPerson></ViewPerson>
     <EditPerson></EditPerson>
@@ -62,7 +62,13 @@ export default {
                 }
             ],
         }
-    }
+    },
+    methods: {
+        handleAddPerson(entry)
+        {
+            this.personList.push(entry)
+        }
+    },
 }
 
 
