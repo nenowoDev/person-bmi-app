@@ -1,26 +1,31 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <AddPerson></AddPerson>
+    <ListPersons></ListPersons>
+    <ViewPerson></ViewPerson>
+    <EditPerson></EditPerson>
+    <DeletePerson></DeletePerson>
+    <BmiText></BmiText>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import AddPerson from './components/AddPerson.vue';
+import BmiText from './components/BmiText.vue';
+import DeletePerson from './components/DeletePerson.vue';
+import EditPerson from './components/EditPerson.vue';
+import ListPersons from './components/ListPersons.vue';
+import ViewPerson from './components/ViewPerson.vue';
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
+    name: 'App',
+    components: {
+        AddPerson,
+        BmiText,
+        DeletePerson,
+        EditPerson,
+        ListPersons,
+        ViewPerson
+    }
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<style></style>

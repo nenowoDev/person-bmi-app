@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>Person BMI Web App</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Person BMI Web App</h1>
+
+        <nav class="main-nav">
+            <a href="#">Add Person</a> |
+            <a href="#">View All</a> |
+            <a href="#">View One</a> |
+            <a href="#">Edit</a> |
+            <a href="#">Delete</a>
+        </nav>
+
+
+
+
+
+    </div>
+    <script>
+
+        window.addEventListener('DOMContentLoaded', () => {
+            displayList();
+            showTextStats();
+            showChartStats();
+        });
+        //var personList = [];
+        var personList = [
+            {
+                name: "Hassan",
+                yob: 1995,
+                age: new Date().getFullYear() - 1995,
+                weight: 68,
+                height: 175,
+                bmi: (68 / ((175 / 100) ** 2)).toFixed(2),
+                category: 't.b.c',
+                photoUrl: "https://randomuser.me/api/portraits/men/44.jpg"
+            },
+            {
+                name: "Siti",
+                yob: 2000,
+                age: new Date().getFullYear() - 2000,
+                weight: 52,
+                height: 160,
+                bmi: (52 / ((160 / 100) ** 2)).toFixed(2),
+                category: 'normal',
+                photoUrl: "https://randomuser.me/api/portraits/women/3.jpg"
+            }
+        ];
+
+        document.getElementById('bmiForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const yob = parseInt(document.getElementById('yob').value);
+            const weight = parseFloat(document.getElementById('weight').value);
+            const height = parseFloat(document.getElementById('height').value);
+            const photoUrl = document.getElementById('photoUrl').value.trim();
+            const age = new Date().getFullYear() - yob;
+            const bmi = (weight / ((height / 100) ** 2)).toFixed(2);
+            const person = {
+                "name": name,
+                "yob": yob,
+                "age": age,
+                "weight": weight,
+                "height": height,
+                "bmi": bmi,
+                "photoUrl": photoUrl
+            };
+            personList.push(person);
+            displayList();
+            displayStats();
+            // document.getElementById('bmiForm').reset();
+        });
+        function displayList() {
+            const ul = document.getElementById('personList');
+            ul.innerHTML = '';
+            personList.forEach((p, i) => {
+                const li = document.createElement('li');
+                li.innerHTML = `
+          <div class="person-card">
+            ${p.photoUrl ? `<img src="${p.photoUrl}" alt="photo" class="person-photo">` : ''}
+            <div>
+              <strong>[${i}] ${p.name}</strong> (Age: ${p.age})<br>
+              Weight: ${p.weight} kg, Height: ${p.height} cm<br>
+              BMI: ${p.bmi}
+            </div>
+          </div>
+        `;
+                ul.appendChild(li);
+            });
+        }
+        function showTextStats() {
+            const statsDiv = document.getElementById('bmiStats');
+            if (personList.length === 0) {
+                statsDiv.innerHTML = '<p>No data yet.</p>';
+                return;
+            }
+            const categories = { underweight: 0, normal: 0, overweight: 0, obese: 0 };
+            personList.forEach(p => {
+                const bmi = parseFloat(p.bmi);
+                if (bmi < 18.5) categories.underweight++;
+                else if (bmi < 24.9) categories.normal++;
+                else if (bmi < 29.9) categories.overweight++;
+                else categories.obese++;
+            });
+            const total = personList.length;
+            let html = '';
+            for (const cat in categories) {
+                const count = categories[cat];
+                const percent = ((count / total) * 100).toFixed(1);
+                html += `
+          <div><strong>${cat.charAt(0).toUpperCase() + cat.slice(1)}</strong>: ${count} (${percent}%)</div>
+          <div class="bar-container">
+            <div class="bar ${cat}" style="width:${percent}%">${percent}%</div>
+          </div>
+        `;
+            }
+            statsDiv.innerHTML = html;
+        }
+
+        let bmiChart;
+        function showChartStats() {
+            const categories = { Underweight: 0, Normal: 0, Overweight: 0, Obese: 0 };
+            personList.forEach(p => {
+                const bmi = parseFloat(p.bmi);
+                if (bmi < 18.5) categories.Underweight++;
+                else if (bmi < 24.9) categories.Normal++;
+                else if (bmi < 29.9) categories.Overweight++;
+                else categories.Obese++;
+            });
+            const ctx = document.getElementById('bmiChart').getContext('2d');
+            const data = {
+                labels: Object.keys(categories),
+                datasets: [{
+                    data: Object.values(categories),
+                    backgroundColor: ['#2196f3', '#4caf50', '#ff9800', '#f44336']
+                }]
+            };
+            if (bmiChart) bmiChart.destroy();
+            bmiChart = new Chart(ctx, { type: 'pie', data, options: { responsive: true, plugins: { legend: { position: 'bottom' } } } });
+        }
+    </script>
+</body>
+
+</html>
