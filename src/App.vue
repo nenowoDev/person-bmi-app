@@ -14,7 +14,7 @@
     <AddPerson @person-added="handleAddPerson"></AddPerson>
     <ListPersons :personList ='personList'></ListPersons>
     <ViewPerson :personList ='personList'></ViewPerson>
-    <EditPerson></EditPerson>
+<EditPerson :personList="personList" @update-person="handleUpdatePerson" />
     <DeletePerson></DeletePerson>
     <BmiText :person-list="personList"></BmiText>
 </template>
@@ -69,6 +69,9 @@ export default {
             this.personList.push(entry)
         }
     },
+  handleUpdatePerson(index, updatedPerson) {
+    this.personList.splice(index, 1, updatedPerson); // ✅ update from child
+  }
 }
 
 
