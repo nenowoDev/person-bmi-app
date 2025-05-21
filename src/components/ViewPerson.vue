@@ -38,7 +38,7 @@
     },
     methods:{
         displayByIndex(){
-          if(this.indexInput>0 && this.indexInput<this.personList.length)
+          if(this.indexInput >=0 && this.indexInput<this.personList.length)
           {
             this.selectedPerson = this.personList[this.indexInput]
           }else{
