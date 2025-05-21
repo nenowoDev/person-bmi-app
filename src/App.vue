@@ -11,7 +11,7 @@
         </nav>
 
     </div>
-    <AddPerson @add-person="handleAddPerson"></AddPerson>
+    <AddPerson @person-added="handleAddPerson"></AddPerson>
     <ListPersons></ListPersons>
     <ViewPerson></ViewPerson>
     <EditPerson></EditPerson>
