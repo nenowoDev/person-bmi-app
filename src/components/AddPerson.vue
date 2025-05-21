@@ -9,6 +9,10 @@
         <button type="submit">Add Person</button>
     </form>
 </template>
-<style
+<style>
+h3{
+font-size: 20px;
+}
+</style>
 <script>
 </script>
